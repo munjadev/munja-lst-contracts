@@ -1,0 +1,17 @@
+[
+  {
+    "type": "error",
+    "name": "NoClaimableWithdrawals",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotNFTOwner",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "WithdrawalNotMatured",
+    "inputs": []
+  }
+]

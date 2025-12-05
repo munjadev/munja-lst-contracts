@@ -1,0 +1,779 @@
+[
+  {
+    "type": "function",
+    "name": "baseAsset",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "claimUnstake",
+    "inputs": [
+      {
+        "name": "receiver",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "hub",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IValidatorStakingHub"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "lastRedelegationTime",
+    "inputs": [
+      {
+        "name": "staker",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "manager",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IValidatorManager"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "minStakingAmount",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "minUnstakingAmount",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "redelegate",
+    "inputs": [
+      {
+        "name": "fromValAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "toValAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "redelegationCooldown",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "requestUnstake",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "receiver",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setMinStakingAmount",
+    "inputs": [
+      {
+        "name": "minAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setMinUnstakingAmount",
+    "inputs": [
+      {
+        "name": "minAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setRedelegationCooldown",
+    "inputs": [
+      {
+        "name": "redelegationCooldown_",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setUnstakeCooldown",
+    "inputs": [
+      {
+        "name": "unstakeCooldown_",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "stake",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "staked",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "staker",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "stakerTotal",
+    "inputs": [
+      {
+        "name": "staker",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "totalStaked",
+    "inputs": [
+      {
+        "name": "timestamp",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "totalUnstaking",
+    "inputs": [
+      {
+        "name": "timestamp",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unstakeCooldown",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unstaking",
+    "inputs": [
+      {
+        "name": "staker",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unstakingQueueOffset",
+    "inputs": [
+      {
+        "name": "staker",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unstakingQueueRequestByIndex",
+    "inputs": [
+      {
+        "name": "staker",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "pos",
+        "type": "uint32",
+        "internalType": "uint32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint48",
+        "internalType": "uint48"
+      },
+      {
+        "name": "",
+        "type": "uint208",
+        "internalType": "uint208"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unstakingQueueRequestByTime",
+    "inputs": [
+      {
+        "name": "staker",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "time",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint48",
+        "internalType": "uint48"
+      },
+      {
+        "name": "",
+        "type": "uint208",
+        "internalType": "uint208"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unstakingQueueSize",
+    "inputs": [
+      {
+        "name": "staker",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "validatorTotal",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "MinimumStakingAmountSet",
+    "inputs": [
+      {
+        "name": "previousAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "newAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MinimumUnstakingAmountSet",
+    "inputs": [
+      {
+        "name": "previousAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "newAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Redelegated",
+    "inputs": [
+      {
+        "name": "from",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "who",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RedelegationCooldownUpdated",
+    "inputs": [
+      {
+        "name": "redelegationCooldown",
+        "type": "uint48",
+        "indexed": false,
+        "internalType": "uint48"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Staked",
+    "inputs": [
+      {
+        "name": "val",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "who",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "UnstakeClaimed",
+    "inputs": [
+      {
+        "name": "who",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "reqIdFrom",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "reqIdTo",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "UnstakeCooldownUpdated",
+    "inputs": [
+      {
+        "name": "unstakeCooldown",
+        "type": "uint48",
+        "indexed": false,
+        "internalType": "uint48"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "UnstakeRequested",
+    "inputs": [
+      {
+        "name": "val",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "who",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "reqId",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "IValidatorStaking__CooldownNotPassed",
+    "inputs": [
+      {
+        "name": "lastTime",
+        "type": "uint48",
+        "internalType": "uint48"
+      },
+      {
+        "name": "currentTime",
+        "type": "uint48",
+        "internalType": "uint48"
+      },
+      {
+        "name": "requiredCooldown",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "IValidatorStaking__InsufficientMinimumAmount",
+    "inputs": [
+      {
+        "name": "minAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "IValidatorStaking__InsufficientStakedAmount",
+    "inputs": [
+      {
+        "name": "requested",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "available",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "IValidatorStaking__NotValidator",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "IValidatorStaking__RedelegateToSameValidator",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  }
+]

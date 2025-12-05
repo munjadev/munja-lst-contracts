@@ -1,0 +1,777 @@
+[
+  {
+    "type": "function",
+    "name": "claimForNonTargets",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "vaults",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "fromEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "toEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "totalClaimed",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claimRewards",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "fromEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "toEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "totalClaimed",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "currentEpoch",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "distributeRewards",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "gmMitoAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "finalizeEpoch",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "totalGmMito",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getApplicableConfig",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "config",
+        "type": "tuple",
+        "internalType": "struct IRewardRouter.DistributionConfig",
+        "components": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "operator",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "defaultRecipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "commissionRate",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getClaimableRewards",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "vault",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "fromEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "toEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "totalClaimable",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getConfigEpochsCount",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "count",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getConfigEpochsRange",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "startIndex",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "endIndex",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "epochs",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getDistributionConfig",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "config",
+        "type": "tuple",
+        "internalType": "struct IRewardRouter.DistributionConfig",
+        "components": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "operator",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "defaultRecipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "commissionRate",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getEpochReward",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "totalGmMito",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalTWAB",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "finalized",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getLastFinalizedEpoch",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getVaultClaimed",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "vault",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "gmMitoBalance",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isTarget",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "vault",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "isTarget",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "setDistributionConfig",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "startEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "config",
+        "type": "tuple",
+        "internalType": "struct IRewardRouter.DistributionConfig",
+        "components": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "operator",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "defaultRecipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "commissionRate",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "DistributionConfigSet",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "startEpoch",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "config",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct IRewardRouter.DistributionConfig",
+        "components": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "operator",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "defaultRecipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "commissionRate",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EpochRewardsFinalized",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "validator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "totalGmMito",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalTWAB",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FeeTaken",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "validator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "vault",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "GmMitoTransferred",
+    "inputs": [
+      {
+        "name": "vault",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "gmMitoAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "NonTargetRewardsClaimed",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "validator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "vault",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RewardDistributed",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "gmMitoAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "VaultShareClaimed",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "validator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "vault",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "vaultTWAB",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "gmMitoAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "EpochAlreadyFinalized",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidCommissionRate",
+    "inputs": [
+      {
+        "name": "rate",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidEpoch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidEpochOrder",
+    "inputs": [
+      {
+        "name": "startEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "lastConfigEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidValidator",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidVault",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NoRewards",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotTarget",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Unauthorized",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroAddress",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroAmount",
+    "inputs": []
+  }
+]

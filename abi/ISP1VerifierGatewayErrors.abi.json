@@ -1,0 +1,40 @@
+[
+  {
+    "type": "error",
+    "name": "RouteAlreadyExists",
+    "inputs": [
+      {
+        "name": "verifier",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "RouteIsFrozen",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "RouteNotFound",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SelectorCannotBeZero",
+    "inputs": []
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "type": "function",
+    "name": "Verify",
+    "inputs": [
+      {
+        "name": "proof",
+        "type": "uint256[8]",
+        "internalType": "uint256[8]"
+      },
+      {
+        "name": "input",
+        "type": "uint256[2]",
+        "internalType": "uint256[2]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "compressProof",
+    "inputs": [
+      {
+        "name": "proof",
+        "type": "uint256[8]",
+        "internalType": "uint256[8]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "compressed",
+        "type": "uint256[4]",
+        "internalType": "uint256[4]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "verifyCompressedProof",
+    "inputs": [
+      {
+        "name": "compressedProof",
+        "type": "uint256[4]",
+        "internalType": "uint256[4]"
+      },
+      {
+        "name": "input",
+        "type": "uint256[2]",
+        "internalType": "uint256[2]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "view"
+  },
+  {
+    "type": "error",
+    "name": "ProofInvalid",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "PublicInputNotInField",
+    "inputs": []
+  }
+]

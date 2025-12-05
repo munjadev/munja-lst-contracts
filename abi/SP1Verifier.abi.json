@@ -1,0 +1,115 @@
+[
+  {
+    "type": "function",
+    "name": "VERIFIER_HASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "VERSION",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "Verify",
+    "inputs": [
+      {
+        "name": "proof",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "public_inputs",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "success",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "hashPublicValues",
+    "inputs": [
+      {
+        "name": "publicValues",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "verifyProof",
+    "inputs": [
+      {
+        "name": "programVKey",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "publicValues",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "proofBytes",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "view"
+  },
+  {
+    "type": "error",
+    "name": "InvalidProof",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "WrongVerifierSelector",
+    "inputs": [
+      {
+        "name": "received",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      },
+      {
+        "name": "expected",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ]
+  }
+]

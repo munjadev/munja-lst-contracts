@@ -1,0 +1,299 @@
+[
+  {
+    "type": "function",
+    "name": "depositCollateral",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "collateralOwner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "registerValidator",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "pubKey",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "initialCollateralOwner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "transferCollateralOwnership",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "prevOwner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "unjail",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "updateExtraVotingPower",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "extraVotingPower",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "withdrawCollateral",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "collateralOwner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "receiver",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "maturesAt",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "MsgDepositCollateral",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "collateralOwner",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "amountGwei",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MsgRegisterValidator",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "pubKey",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      },
+      {
+        "name": "initialCollateralOwner",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "initialCollateralAmountGwei",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MsgTransferCollateralOwnership",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "prevOwner",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MsgUnjail",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MsgUpdateExtraVotingPower",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "extraVotingPowerWei",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MsgWithdrawCollateral",
+    "inputs": [
+      {
+        "name": "valAddr",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "collateralOwner",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "receiver",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "amountGwei",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "maturesAt",
+        "type": "uint48",
+        "indexed": false,
+        "internalType": "uint48"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "PermittedCallerSet",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "isPermitted",
+        "type": "bool",
+        "indexed": false,
+        "internalType": "bool"
+      }
+    ],
+    "anonymous": false
+  }
+]

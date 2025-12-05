@@ -1,0 +1,38 @@
+[
+  {
+    "type": "error",
+    "name": "CollateralOwnershipFeedNotFound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "FeedNotFound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "FeedTargetOutdated",
+    "inputs": [
+      {
+        "name": "timestamp",
+        "type": "uint48",
+        "internalType": "uint48"
+      },
+      {
+        "name": "lastTimestamp",
+        "type": "uint48",
+        "internalType": "uint48"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidTimeRange",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NoDataInRange",
+    "inputs": []
+  }
+]

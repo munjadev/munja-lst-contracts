@@ -1,0 +1,40 @@
+[
+  {
+    "type": "event",
+    "name": "RouteAdded",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "indexed": false,
+        "internalType": "bytes4"
+      },
+      {
+        "name": "verifier",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RouteFrozen",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "indexed": false,
+        "internalType": "bytes4"
+      },
+      {
+        "name": "verifier",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  }
+]

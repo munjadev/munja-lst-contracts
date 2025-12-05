@@ -1,0 +1,151 @@
+[
+  {
+    "type": "function",
+    "name": "addRoute",
+    "inputs": [
+      {
+        "name": "verifier",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "freezeRoute",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "routes",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "verifier",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "frozen",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "verifyProof",
+    "inputs": [
+      {
+        "name": "programVKey",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "publicValues",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "proofBytes",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "RouteAdded",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "indexed": false,
+        "internalType": "bytes4"
+      },
+      {
+        "name": "verifier",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RouteFrozen",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "indexed": false,
+        "internalType": "bytes4"
+      },
+      {
+        "name": "verifier",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "RouteAlreadyExists",
+    "inputs": [
+      {
+        "name": "verifier",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "RouteIsFrozen",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "RouteNotFound",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SelectorCannotBeZero",
+    "inputs": []
+  }
+]

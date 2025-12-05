@@ -1,0 +1,12 @@
+[
+  {
+    "type": "error",
+    "name": "CheckpointNotFound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidTimestamp",
+    "inputs": []
+  }
+]

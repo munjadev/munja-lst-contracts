@@ -1,0 +1,379 @@
+[
+  {
+    "type": "function",
+    "name": "available",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "epochFeeder",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IEpochFeeder"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "finalizeReport",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "initializeReport",
+    "inputs": [
+      {
+        "name": "request",
+        "type": "tuple",
+        "internalType": "struct IValidatorContributionFeed.InitReportRequest",
+        "components": [
+          {
+            "name": "totalWeight",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "numOfValidators",
+            "type": "uint16",
+            "internalType": "uint16"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "pushValidatorWeights",
+    "inputs": [
+      {
+        "name": "weights",
+        "type": "tuple[]",
+        "internalType": "struct IValidatorContributionFeed.ValidatorWeight[]",
+        "components": [
+          {
+            "name": "addr",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "weight",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "collateralRewardShare",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "delegationRewardShare",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revokeReport",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "summary",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IValidatorContributionFeed.Summary",
+        "components": [
+          {
+            "name": "totalWeight",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "numOfValidators",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "weightAt",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "index",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IValidatorContributionFeed.ValidatorWeight",
+        "components": [
+          {
+            "name": "addr",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "weight",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "collateralRewardShare",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "delegationRewardShare",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "weightCount",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "weightOf",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "valAddr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IValidatorContributionFeed.ValidatorWeight",
+        "components": [
+          {
+            "name": "addr",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "weight",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "collateralRewardShare",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "delegationRewardShare",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      },
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "ReportFinalized",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ReportInitialized",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalWeight",
+        "type": "uint128",
+        "indexed": false,
+        "internalType": "uint128"
+      },
+      {
+        "name": "numOfValidators",
+        "type": "uint128",
+        "indexed": false,
+        "internalType": "uint128"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ReportRevoked",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ReportRevoking",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "WeightsPushed",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalWeight",
+        "type": "uint128",
+        "indexed": false,
+        "internalType": "uint128"
+      },
+      {
+        "name": "numOfValidators",
+        "type": "uint128",
+        "indexed": false,
+        "internalType": "uint128"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "IValidatorContributionFeed__InvalidReportStatus",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "IValidatorContributionFeed__InvalidTotalWeight",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "IValidatorContributionFeed__InvalidValidatorCount",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "IValidatorContributionFeed__InvalidWeight",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "IValidatorContributionFeed__InvalidWeightAddress",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "IValidatorContributionFeed__InvalidWeightCount",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "IValidatorContributionFeed__ReportNotReady",
+    "inputs": []
+  }
+]
