@@ -1,0 +1,43 @@
+# Bytecode Hashes for Contract Upgrade Verification
+# Generated at: 2025-12-05T05:17:24Z
+# This file is auto-generated during release. DO NOT EDIT.
+
+[metadata]
+git_commit     = "d0bbb2c2f0a2530bea1c330453be4f33846e0090"
+git_tag        = "v0.0.3"
+optimizer_runs = 9999
+solc_version   = "0.8.29+commit.ab55807c"
+
+[contracts]
+
+[gmMITO]
+hash = "0x729baede21259d1af0d82462351a26037a950e20cf4e40a985c5b609da114baa"
+size = 21805 # bytes
+
+[mMITOc]
+hash = "0x56c49e63a6c24f3725bd9b9de8a212c5f08e3ae528d55a175bbca97b5c776dc1"
+size = 23803 # bytes
+
+[mMITOs]
+hash = "0xcdf4e1e679f2f919860865944923632da895ee88330ab005e91d695879059384"
+size = 17343 # bytes
+
+[WithdrawalNFT]
+hash = "0xadf47cacdff8d75bec4b6e19d8c6f8afe542d563abddb9ad73b3dc46d7d4d583"
+size = 16879 # bytes
+
+[RewardRouter]
+hash = "0x122a61414d7f5e485ce5c10191ebad5136e86d2576e02e4b74d49445e56f7321"
+size = 18246 # bytes
+
+[ValidatorController]
+hash = "0x503f9eb2e25bc9018adce25959c28a69beb77455594bc7acf3f92d29d4dcc5e5"
+size = 8246 # bytes
+
+[ManagedOracleFeed]
+hash = "0x34f21789697bc7803d289a86fc555cc9b88b24ef1bbaa2108a0f2c814103dbf3"
+size = 15852 # bytes
+
+[ZkOracleFeed]
+hash = "0x1d0ea08a2428aa5d6105c547f46179d539b5712525d089d1a7d3fbebe47c521b"
+size = 18225 # bytes
