@@ -195,7 +195,7 @@ contract mMITOs is
       _msgSender(), amount, amount, block.timestamp, address(TMITO), address(this)
     );
 
-    emit UnstakeRequested(_msgSender(), validator, amount);
+    emit UnstakeRequested(_msgSender(), validator, amount, tokenId);
   }
 
   /// @notice Claim matured withdrawals (supports single or batch)

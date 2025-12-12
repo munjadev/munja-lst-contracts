@@ -5,7 +5,9 @@ pragma solidity ^0.8.28;
 /// @notice Interface for mMITOs vault (tMITO staking strategy)
 interface ImMITOs {
   event Staked(address indexed user, address indexed validator, uint256 amount);
-  event UnstakeRequested(address indexed user, address indexed validator, uint256 amount);
+  event UnstakeRequested(
+    address indexed user, address indexed validator, uint256 amount, uint256 tokenId
+  );
   event WithdrawalClaimed(address indexed user, uint256 amount, uint256[] tokenIds);
   event RewardDistributed(uint256 amount, uint256 rewardPerShare);
   event RewardClaimed(address indexed user, uint256 amount);
