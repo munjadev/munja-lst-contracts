@@ -117,7 +117,7 @@ contract CollateralOracleStorage {
     uint256 ownershipIndex = feed$.ownershipIndexByOwner[index][owner];
     require(ownershipIndex > 0, CollateralOwnershipFeedNotFound());
 
-    return _fromStorageData(feed$.ownerships[index][ownershipIndex]);
+    return _fromStorageData(feed$.ownerships[index][ownershipIndex - 1]);
   }
 
   function _getCollateralOwnerships(
@@ -312,7 +312,9 @@ contract CollateralOracleStorage {
     uint256 cumulativeAtEnd = _getCumulativeTotalSharesAt(feed$, endTime);
 
     // TWAB = (cumulative at end - cumulative at start) / duration
-    totalTwab = cumulativeAtEnd - cumulativeAtStart;
+    uint256 weightedShares = cumulativeAtEnd - cumulativeAtStart;
+    uint256 duration = endTime - startTime;
+    totalTwab = FixedPointMathLib.fullMulDiv(weightedShares, 1, duration);
   }
 
   /// @notice Get cumulative total shares at a specific timestamp

@@ -59,7 +59,7 @@ contract RewardRouterMigration is RewardRouter {
         newConfig.operator = newOperator;
         newConfig.defaultRecipient = newDefaultRecipient;
         newConfig.feeRecipient = newFeeRecipient;
-        newConfig.commissionRate = legacyConfig.commissionRate;
+        newConfig.commissionRate = 0; // old struct had no commissionRate
 
         // Copy targets from legacy config
         delete newConfig.targets;
@@ -80,7 +80,7 @@ contract RewardRouterMigration is RewardRouter {
 
   struct LegacyDistributionConfig {
     address[] targets;
-    uint256 commissionRate;
+    address operator; // old struct stored operator here (not commissionRate)
   }
 
   /// @custom:storage-location erc7201:munja.storage.RewardRouter

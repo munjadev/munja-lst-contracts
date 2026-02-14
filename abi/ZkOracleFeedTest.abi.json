@@ -441,7 +441,77 @@
   },
   {
     "type": "function",
+    "name": "test_initializeV2_reverts_whenCalledTwice",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_initializeV2_setsConfigOnUpgrade",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "test_programVKey_returnsCorrectValue",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_setProgramVKey_emitsEvent",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_setProgramVKey_reverts_whenNotAdmin",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_setProgramVKey_reverts_whenZeroVKey",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_setProgramVKey_succeeds_whenCalledByAdmin",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_setVerifier_emitsEvent",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_setVerifier_reverts_whenNotAdmin",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_setVerifier_reverts_whenZeroAddress",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_setVerifier_succeeds_whenCalledByAdmin",
     "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"
@@ -456,6 +526,13 @@
   {
     "type": "function",
     "name": "test_upgradeToAndCall_succeeds_whenCalledByAdmin",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_verifier_returnsCorrectValue",
     "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"
@@ -513,6 +590,44 @@
         "type": "bytes",
         "indexed": false,
         "internalType": "bytes"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ProgramVKeyUpdated",
+    "inputs": [
+      {
+        "name": "oldVKey",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "newVKey",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "VerifierUpdated",
+    "inputs": [
+      {
+        "name": "oldVerifier",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newVerifier",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
       }
     ],
     "anonymous": false

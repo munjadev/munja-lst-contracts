@@ -144,6 +144,24 @@
   },
   {
     "type": "function",
+    "name": "addGatewayRoute",
+    "inputs": [
+      {
+        "name": "gateway",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "verifier",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "buildValidatorControllerDeployData",
     "inputs": [
       {
@@ -211,10 +229,41 @@
   },
   {
     "type": "function",
+    "name": "updateProgramVKey",
+    "inputs": [
+      {
+        "name": "_programVKey",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "updateVerifier",
+    "inputs": [
+      {
+        "name": "_verifier",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "upgradeZkOracleFeed",
     "inputs": [
       {
-        "name": "programVKey",
+        "name": "_verifier",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_programVKey",
         "type": "bytes32",
         "internalType": "bytes32"
       }
@@ -222,6 +271,35 @@
     "outputs": [
       {
         "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "upgradeZkOracleFeedWithGateway",
+    "inputs": [
+      {
+        "name": "gatewayOwner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_programVKey",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "newImpl",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "gateway",
         "type": "address",
         "internalType": "address"
       }

@@ -144,14 +144,50 @@
   },
   {
     "type": "function",
-    "name": "deployNewImplementation",
+    "name": "addGatewayRoute",
     "inputs": [
       {
-        "name": "programVKey",
-        "type": "bytes32",
-        "internalType": "bytes32"
+        "name": "gateway",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "verifier",
+        "type": "address",
+        "internalType": "address"
       }
     ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "deployGateway",
+    "inputs": [
+      {
+        "name": "gatewayOwner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "gateway",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "verifier",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "deployNewImplementation",
+    "inputs": [],
     "outputs": [
       {
         "name": "",
@@ -166,9 +202,40 @@
     "name": "migrate",
     "inputs": [
       {
-        "name": "programVKey",
+        "name": "gatewayOwner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_programVKey",
         "type": "bytes32",
         "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "updateProgramVKey",
+    "inputs": [
+      {
+        "name": "_programVKey",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "updateVerifier",
+    "inputs": [
+      {
+        "name": "_verifier",
+        "type": "address",
+        "internalType": "address"
       }
     ],
     "outputs": [],
@@ -182,6 +249,16 @@
         "name": "implAddress",
         "type": "address",
         "internalType": "address"
+      },
+      {
+        "name": "_verifier",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_programVKey",
+        "type": "bytes32",
+        "internalType": "bytes32"
       }
     ],
     "outputs": [],
@@ -191,6 +268,19 @@
     "type": "function",
     "name": "viewConfig",
     "inputs": [],
+    "outputs": [],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "viewGatewayRoute",
+    "inputs": [
+      {
+        "name": "selector",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ],
     "outputs": [],
     "stateMutability": "view"
   }

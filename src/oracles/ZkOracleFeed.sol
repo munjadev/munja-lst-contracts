@@ -34,6 +34,11 @@ contract ZkOracleFeed is
 
   error AppHashMismatch();
   error EIP4788Timeout();
+  error ZeroAddress();
+  error ZeroVKey();
+
+  event VerifierUpdated(address indexed oldVerifier, address indexed newVerifier);
+  event ProgramVKeyUpdated(bytes32 indexed oldVKey, bytes32 indexed newVKey);
 
   /// @dev keccak256('feeder');
   bytes32 public constant FEEDER_ROLE =
@@ -42,32 +47,72 @@ contract ZkOracleFeed is
   uint256 public constant EIP4788_TIMEOUT = 1 days / 2;
   address public constant EIP4788 = 0x000F3df6D732807Ef1319fB7B8bB8522d0Beac02;
 
-  ISP1Verifier public immutable VERIFIFER;
-  bytes32 public immutable PROGRAM_VKEY;
+  /// @custom:storage-location erc7201:munja.storage.oracles.ZkOracleFeedConfig
+  struct ZkOracleConfig {
+    ISP1Verifier verifier;
+    bytes32 programVKey;
+  }
 
-  constructor(
-    address _verifier,
-    bytes32 _programVKey
-  ) {
+  // keccak256(abi.encode(uint256(keccak256("munja.storage.oracles.ZkOracleFeedConfig")) - 1)) & ~bytes32(uint256(0xff))
+  bytes32 private constant _ZK_CONFIG_SLOT =
+    0x5c59d1aa0ea093fc04b8ee9e6658cc8f04d8ff9a372e945475492f2c87191000;
+
+  function _getZkConfig() private pure returns (ZkOracleConfig storage $) {
+    assembly {
+      $.slot := _ZK_CONFIG_SLOT
+    }
+  }
+
+  constructor() {
     _disableInitializers();
-
-    VERIFIFER = ISP1Verifier(_verifier);
-    PROGRAM_VKEY = _programVKey;
   }
 
   function initialize(
-    address initialOwner
+    address initialOwner,
+    address _verifier,
+    bytes32 _programVKey
   ) external initializer {
     __AccessControl_init();
     __AccessControlEnumerable_init();
     __UUPSUpgradeable_init();
 
     _grantRole(DEFAULT_ADMIN_ROLE, initialOwner);
+    _setVerifier(_verifier);
+    _setProgramVKey(_programVKey);
+  }
+
+  /// @notice Reinitializer for upgrading existing proxies from V1 (immutable) to V2 (storage)
+  function initializeV2(
+    address _verifier,
+    bytes32 _programVKey
+  ) external reinitializer(2) {
+    _setVerifier(_verifier);
+    _setProgramVKey(_programVKey);
   }
 
   function _authorizeUpgrade(
     address
   ) internal override onlyRole(DEFAULT_ADMIN_ROLE) { }
+
+  function verifier() external view returns (ISP1Verifier) {
+    return _getZkConfig().verifier;
+  }
+
+  function programVKey() external view returns (bytes32) {
+    return _getZkConfig().programVKey;
+  }
+
+  function setVerifier(
+    address _verifier
+  ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    _setVerifier(_verifier);
+  }
+
+  function setProgramVKey(
+    bytes32 _programVKey
+  ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    _setProgramVKey(_programVKey);
+  }
 
   function feedType() external pure override returns (FeedType) {
     return FeedType.Zk;
@@ -158,7 +203,8 @@ contract ZkOracleFeed is
     (bytes32 appHash, bool isCached) = _getAppHash($, targetTimestamp);
     if (!isCached) $.appHashes[targetTimestamp] = appHash;
 
-    LibZkOracleFeed.verify(VERIFIFER, PROGRAM_VKEY, appHash, proof, publicData);
+    ZkOracleConfig storage config = _getZkConfig();
+    LibZkOracleFeed.verify(config.verifier, config.programVKey, appHash, proof, publicData);
 
     // 03. Save the public data
     _storeFeedData(
@@ -175,6 +221,26 @@ contract ZkOracleFeed is
       publicData.ownerships.length,
       bytes(string.concat('{"type":"zk","appHash":"', uint256(appHash).toHexString(), '"}'))
     );
+  }
+
+  function _setVerifier(
+    address _verifier
+  ) internal {
+    require(_verifier != address(0), ZeroAddress());
+    ZkOracleConfig storage config = _getZkConfig();
+    address old = address(config.verifier);
+    config.verifier = ISP1Verifier(_verifier);
+    emit VerifierUpdated(old, _verifier);
+  }
+
+  function _setProgramVKey(
+    bytes32 _programVKey
+  ) internal {
+    require(_programVKey != bytes32(0), ZeroVKey());
+    ZkOracleConfig storage config = _getZkConfig();
+    bytes32 old = config.programVKey;
+    config.programVKey = _programVKey;
+    emit ProgramVKeyUpdated(old, _programVKey);
   }
 
   function _getAppHash(
