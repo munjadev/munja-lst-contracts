@@ -789,34 +789,6 @@
   },
   {
     "type": "function",
-    "name": "migrate",
-    "inputs": [
-      {
-        "name": "validators",
-        "type": "address[]",
-        "internalType": "address[]"
-      },
-      {
-        "name": "newOperators",
-        "type": "address[]",
-        "internalType": "address[]"
-      },
-      {
-        "name": "newDefaultRecipients",
-        "type": "address[]",
-        "internalType": "address[]"
-      },
-      {
-        "name": "newFeeRecipients",
-        "type": "address[]",
-        "internalType": "address[]"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
     "name": "proxiableUUID",
     "inputs": [],
     "outputs": [
@@ -827,6 +799,40 @@
       }
     ],
     "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "recover",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "sourceEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "fromEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "toEpoch",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "totalRedistributed",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
@@ -1050,6 +1056,43 @@
       },
       {
         "name": "totalTWAB",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EpochRewardsRedistributed",
+    "inputs": [
+      {
+        "name": "validator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "sourceEpoch",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "fromEpoch",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "toEpoch",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalRedistributed",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
@@ -1423,16 +1466,6 @@
   {
     "type": "error",
     "name": "InvalidVault",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "LengthMismatch",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "NoEpochs",
     "inputs": []
   },
   {

@@ -106,8 +106,10 @@ interface IRewardRouter {
     address validator
   ) external returns (uint256 gmMitoAmount);
 
-  /// @notice Finalize a single epoch (convenience wrapper for finalizeEpochs)
-  /// @param epoch Epoch number
+  /// @notice Finalize all pending epochs up to `epoch` (inclusive)
+  /// @dev Always processes from lastFinalizedEpoch+1 to `epoch` to prevent
+  ///      operatorMint claiming all rewards but only attributing to one epoch
+  /// @param epoch Target epoch to finalize up to
   /// @param validator Validator to claim from
   /// @return totalGmMito Total gmMito claimed
   function finalizeEpoch(

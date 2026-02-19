@@ -165,7 +165,9 @@ contract RewardRouter is
     uint256 epoch,
     address validator
   ) external onlyRole(OPERATOR_ROLE) returns (uint256 totalGmMito) {
-    return _finalizeEpochs(epoch, epoch, validator);
+    uint256 from = _getStorage().lastFinalizedEpoch[validator] + 1;
+    if (from == 1) from = epoch;
+    return _finalizeEpochs(from, epoch, validator);
   }
 
   /// @inheritdoc IRewardRouter
