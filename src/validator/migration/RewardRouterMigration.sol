@@ -55,16 +55,21 @@ contract RewardRouterMigration is RewardRouter {
         LegacyDistributionConfig storage legacyConfig =
           $legacy.distributionConfigs[validator][epoch];
 
+        // IMPORTANT: Cache targets in memory BEFORE writing to newConfig.
+        // legacyConfig and newConfig are aliased (same storage slot), so writing
+        // to newConfig fields will corrupt legacyConfig reads.
+        address[] memory cachedTargets = legacyConfig.targets;
+
         DistributionConfig storage newConfig = $.distributionConfigs[validator][epoch];
         newConfig.operator = newOperator;
         newConfig.defaultRecipient = newDefaultRecipient;
         newConfig.feeRecipient = newFeeRecipient;
-        newConfig.commissionRate = 0; // old struct had no commissionRate
+        newConfig.commissionRate = 0;
 
-        // Copy targets from legacy config
+        // Restore targets from cached memory copy
         delete newConfig.targets;
-        for (uint256 k = 0; k < legacyConfig.targets.length; k++) {
-          newConfig.targets.push(legacyConfig.targets[k]);
+        for (uint256 k = 0; k < cachedTargets.length; k++) {
+          newConfig.targets.push(cachedTargets[k]);
         }
       }
     }
@@ -80,7 +85,7 @@ contract RewardRouterMigration is RewardRouter {
 
   struct LegacyDistributionConfig {
     address[] targets;
-    address operator; // old struct stored operator here (not commissionRate)
+    uint256 commissionRate;
   }
 
   /// @custom:storage-location erc7201:munja.storage.RewardRouter

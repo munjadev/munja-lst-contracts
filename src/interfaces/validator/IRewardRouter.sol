@@ -243,4 +243,15 @@ interface IRewardRouter {
     address vault,
     uint256 epoch
   ) external view returns (bool isTarget);
+
+  /// @notice Set operator claim approval on the RewardDistributor (ADMIN only)
+  /// @dev Required so gmMITO can claim operator rewards through this contract
+  /// @param validator Validator address
+  /// @param claimer Address to approve (typically gmMITO)
+  /// @param approval Whether to approve or revoke
+  function setOperatorClaimApproval(
+    address validator,
+    address claimer,
+    bool approval
+  ) external;
 }

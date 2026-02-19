@@ -125,6 +125,21 @@ contract RewardRouter is
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
+  // DEFAULT_ADMIN_ROLE Functions
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /// @inheritdoc IRewardRouter
+  function setOperatorClaimApproval(
+    address validator,
+    address claimer,
+    bool approval
+  ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    require(validator != address(0), ZeroAddress());
+    require(claimer != address(0), ZeroAddress());
+    REWARD_DISTRIBUTOR.setOperatorClaimApprovalStatus(validator, claimer, approval);
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
   // OPERATOR_ROLE Functions (Global Operator)
   // ═══════════════════════════════════════════════════════════════════════════
 
