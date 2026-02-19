@@ -70,6 +70,19 @@
   },
   {
     "type": "function",
+    "name": "contributionFeed",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract MockContributionFeed"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "epochFeeder",
     "inputs": [],
     "outputs": [
@@ -480,6 +493,13 @@
   },
   {
     "type": "function",
+    "name": "test_finalizeEpoch_canFinalizeAfterSkip",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "test_finalizeEpoch_emitsEvent",
     "inputs": [],
     "outputs": [],
@@ -501,13 +521,6 @@
   },
   {
     "type": "function",
-    "name": "test_finalizeEpoch_reverts_whenNoRewards",
-    "inputs": [],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
     "name": "test_finalizeEpoch_reverts_whenNotOperator",
     "inputs": [],
     "outputs": [],
@@ -515,14 +528,91 @@
   },
   {
     "type": "function",
-    "name": "test_finalizeEpoch_reverts_whenTotalTWABIsZero",
+    "name": "test_finalizeEpoch_reverts_whenZeroEpoch",
     "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"
   },
   {
     "type": "function",
-    "name": "test_finalizeEpoch_reverts_whenZeroEpoch",
+    "name": "test_finalizeEpoch_skipsEpoch_whenNoClaimableRewards",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpoch_skipsEpoch_whenOracleReverts",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpoch_skipsEpoch_whenTotalTWABIsZero",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpochs_dustGoesToLastValidEpoch",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpochs_equalWeights_equalSplit",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpochs_mixedSkipAndValid",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpochs_reverts_whenInvalidRange",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpochs_reverts_whenNotOperator",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpochs_singleEpoch_equivalentToFinalizeEpoch",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpochs_skipsAll_whenNoClaimableRewards",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpochs_skipsEpochsWithNoWeight",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_finalizeEpochs_varyingWeights_proportionalSplit",
     "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"
@@ -732,6 +822,25 @@
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EpochSkipped",
+    "inputs": [
+      {
+        "name": "epoch",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "validator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
       }
     ],
     "anonymous": false

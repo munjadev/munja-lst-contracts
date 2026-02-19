@@ -14,6 +14,9 @@ import { UUPSUpgradeable } from '@ozu/proxy/utils/UUPSUpgradeable.sol';
 
 import { IGovMITO } from '@mitosis/interfaces/hub/IGovMITO.sol';
 import { IEpochFeeder } from '@mitosis/interfaces/hub/validator/IEpochFeeder.sol';
+import {
+  IValidatorContributionFeed
+} from '@mitosis/interfaces/hub/validator/IValidatorContributionFeed.sol';
 import { IValidatorManager } from '@mitosis/interfaces/hub/validator/IValidatorManager.sol';
 import {
   IValidatorRewardDistributor
@@ -162,34 +165,150 @@ contract RewardRouter is
     uint256 epoch,
     address validator
   ) external onlyRole(OPERATOR_ROLE) returns (uint256 totalGmMito) {
+    return _finalizeEpochs(epoch, epoch, validator);
+  }
+
+  /// @inheritdoc IRewardRouter
+  function finalizeEpochs(
+    uint256 fromEpoch,
+    uint256 toEpoch,
+    address validator
+  ) external onlyRole(OPERATOR_ROLE) returns (uint256 totalGmMito) {
+    return _finalizeEpochs(fromEpoch, toEpoch, validator);
+  }
+
+  struct EpochCollectResult {
+    uint256[] weights;
+    uint256[] twabs;
+    uint256 totalWeight;
+  }
+
+  function _finalizeEpochs(
+    uint256 fromEpoch,
+    uint256 toEpoch,
+    address validator
+  ) internal returns (uint256 totalGmMito) {
     require(validator != address(0), ZeroAddress());
-    require(epoch > 0, InvalidEpoch());
+    require(fromEpoch > 0 && toEpoch >= fromEpoch, InvalidEpoch());
 
     Storage storage $ = _getStorage();
-    EpochReward storage reward = $.epochRewards[validator][epoch];
-
-    require(!reward.finalized, EpochAlreadyFinalized());
-
     uint256 lastFinalized = $.lastFinalizedEpoch[validator];
-    require(epoch == lastFinalized + 1 || lastFinalized == 0, InvalidEpoch());
+    require(fromEpoch == lastFinalized + 1 || lastFinalized == 0, InvalidEpoch());
 
-    uint48 epochStartTime = EPOCH_FEEDER.timeAt(epoch);
-    uint48 epochEndTime = EPOCH_FEEDER.timeAt(epoch + 1);
+    uint256 rangeLen = toEpoch - fromEpoch + 1;
 
-    address[] memory validators = new address[](1);
-    validators[0] = validator;
-    totalGmMito = GM_MITO.operatorMint(validators, address(this));
-    require(totalGmMito > 0, NoRewards());
+    // Phase 1: Collect valid epochs — TWAB + contribution weight
+    EpochCollectResult memory collected = _collectEpochData($, fromEpoch, rangeLen, validator);
+    if (collected.totalWeight == 0) return 0;
 
-    uint256 totalTWAB = COLLATERAL_ORACLE.getTotalTWAB(validator, epochStartTime, epochEndTime);
-    require(totalTWAB > 0, NoRewards());
+    // Pre-mint check
+    {
+      (uint256 claimableAssets,) = REWARD_DISTRIBUTOR.claimableOperatorRewards(validator);
+      if (claimableAssets == 0) {
+        _skipValidEpochs($, fromEpoch, rangeLen, collected.weights, validator);
+        return 0;
+      }
+    }
 
-    reward.totalGmMito = totalGmMito;
-    reward.totalTWAB = totalTWAB;
-    reward.finalized = true;
-    $.lastFinalizedEpoch[validator] = epoch;
+    // Phase 2: Mint once
+    {
+      address[] memory validators = new address[](1);
+      validators[0] = validator;
+      totalGmMito = GM_MITO.operatorMint(validators, address(this));
+      require(totalGmMito > 0, NoRewards());
+    }
 
-    emit EpochRewardsFinalized(epoch, validator, totalGmMito, totalTWAB);
+    // Phase 3: Distribute proportionally by contribution weight
+    _distributeRewards($, fromEpoch, rangeLen, validator, totalGmMito, collected);
+  }
+
+  function _collectEpochData(
+    Storage storage $,
+    uint256 fromEpoch,
+    uint256 rangeLen,
+    address validator
+  ) private returns (EpochCollectResult memory result) {
+    IValidatorContributionFeed contributionFeed = REWARD_DISTRIBUTOR.validatorContributionFeed();
+
+    result.weights = new uint256[](rangeLen);
+    result.twabs = new uint256[](rangeLen);
+
+    for (uint256 i = 0; i < rangeLen; i++) {
+      uint256 ep = fromEpoch + i;
+      require(!$.epochRewards[validator][ep].finalized, EpochAlreadyFinalized());
+
+      uint256 twab =
+        _tryGetTotalTWAB(validator, EPOCH_FEEDER.timeAt(ep), EPOCH_FEEDER.timeAt(ep + 1));
+      if (twab == 0) {
+        $.lastFinalizedEpoch[validator] = ep;
+        emit EpochSkipped(ep, validator);
+        continue;
+      }
+
+      (IValidatorContributionFeed.ValidatorWeight memory w, bool found) =
+        contributionFeed.weightOf(ep, validator);
+      if (!found || w.weight == 0) {
+        $.lastFinalizedEpoch[validator] = ep;
+        emit EpochSkipped(ep, validator);
+        continue;
+      }
+
+      result.weights[i] = uint256(w.weight);
+      result.twabs[i] = twab;
+      result.totalWeight += uint256(w.weight);
+    }
+  }
+
+  function _skipValidEpochs(
+    Storage storage $,
+    uint256 fromEpoch,
+    uint256 rangeLen,
+    uint256[] memory weights,
+    address validator
+  ) private {
+    for (uint256 i = 0; i < rangeLen; i++) {
+      if (weights[i] > 0) {
+        uint256 ep = fromEpoch + i;
+        $.lastFinalizedEpoch[validator] = ep;
+        emit EpochSkipped(ep, validator);
+      }
+    }
+  }
+
+  function _distributeRewards(
+    Storage storage $,
+    uint256 fromEpoch,
+    uint256 rangeLen,
+    address validator,
+    uint256 totalGmMito,
+    EpochCollectResult memory collected
+  ) private {
+    uint256 distributed;
+    uint256 lastValidEpoch;
+
+    for (uint256 i = 0; i < rangeLen; i++) {
+      if (collected.weights[i] == 0) continue;
+
+      uint256 ep = fromEpoch + i;
+      uint256 epochGmMito =
+        FixedPointMathLib.fullMulDiv(totalGmMito, collected.weights[i], collected.totalWeight);
+
+      EpochReward storage reward = $.epochRewards[validator][ep];
+      reward.totalGmMito = epochGmMito;
+      reward.totalTWAB = collected.twabs[i];
+      reward.finalized = true;
+      $.lastFinalizedEpoch[validator] = ep;
+
+      distributed += epochGmMito;
+      lastValidEpoch = ep;
+
+      emit EpochRewardsFinalized(ep, validator, epochGmMito, collected.twabs[i]);
+    }
+
+    // Assign rounding dust to last valid epoch
+    if (distributed < totalGmMito && lastValidEpoch > 0) {
+      $.epochRewards[validator][lastValidEpoch].totalGmMito += totalGmMito - distributed;
+    }
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -634,6 +753,19 @@ contract RewardRouter is
       if (targets[i] == vault) return true;
     }
     return false;
+  }
+
+  /// @notice Safely query oracle TWAB, returns 0 if the call reverts (e.g. missing data)
+  function _tryGetTotalTWAB(
+    address validator,
+    uint48 startTime,
+    uint48 endTime
+  ) private view returns (uint256) {
+    try COLLATERAL_ORACLE.getTotalTWAB(validator, startTime, endTime) returns (uint256 twab) {
+      return twab;
+    } catch {
+      return 0;
+    }
   }
 
   function _authorizeUpgrade(

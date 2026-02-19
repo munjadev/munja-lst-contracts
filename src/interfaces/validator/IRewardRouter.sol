@@ -82,6 +82,11 @@ interface IRewardRouter {
     uint256 amount
   );
 
+  /// @notice Emitted when an epoch is skipped due to unavailable oracle data
+  /// @param epoch Epoch number
+  /// @param validator Validator address
+  event EpochSkipped(uint256 indexed epoch, address indexed validator);
+
   error ZeroAddress();
   error NoRewards();
   error ZeroAmount();
@@ -101,13 +106,25 @@ interface IRewardRouter {
     address validator
   ) external returns (uint256 gmMitoAmount);
 
-  /// @notice Finalize epoch rewards (operator only)
-  /// @dev Claims operator rewards from validator and stores them for vault claims
+  /// @notice Finalize a single epoch (convenience wrapper for finalizeEpochs)
   /// @param epoch Epoch number
   /// @param validator Validator to claim from
   /// @return totalGmMito Total gmMito claimed
   function finalizeEpoch(
     uint256 epoch,
+    address validator
+  ) external returns (uint256 totalGmMito);
+
+  /// @notice Finalize a range of epochs with proportional reward distribution
+  /// @dev Calls operatorMint once and splits minted gmMITO across epochs
+  ///      using ValidatorContributionFeed weights. Skips epochs with no oracle or weight data.
+  /// @param fromEpoch Starting epoch (inclusive)
+  /// @param toEpoch Ending epoch (inclusive)
+  /// @param validator Validator to claim from
+  /// @return totalGmMito Total gmMito claimed across all epochs
+  function finalizeEpochs(
+    uint256 fromEpoch,
+    uint256 toEpoch,
     address validator
   ) external returns (uint256 totalGmMito);
 
