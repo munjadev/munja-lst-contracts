@@ -373,18 +373,20 @@ contract gmMITO is
 
     $.totalPendingWithdrawal -= totalClaimed.toUint128();
 
-    // Sweep any matured govMITO withdrawals into this contract's balance
+    // Sweep matured govMITO→MITO conversions (returns native MITO to this contract)
     uint256 claimable = GOV_MITO.previewClaimWithdraw(address(this));
     if (claimable > 0) GOV_MITO.claimWithdraw(address(this));
 
-    require(GOV_MITO.balanceOf(address(this)) >= totalClaimed, InsufficientGovMitoBalance());
+    require(address(this).balance >= totalClaimed, InsufficientGovMitoBalance());
 
-    SafeTransferLib.safeTransfer(address(GOV_MITO), _msgSender(), totalClaimed);
+    SafeTransferLib.safeTransferETH(_msgSender(), totalClaimed);
 
     emit WithdrawalClaimed(_msgSender(), totalClaimed, totalClaimedTokens, tokenIds);
 
     return totalClaimed;
   }
+
+  receive() external payable { }
 
   /// @inheritdoc IgmMITO
   function setWithdrawalPeriod(
