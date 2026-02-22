@@ -537,6 +537,13 @@
   },
   {
     "type": "function",
+    "name": "test_claimWithdraw_multiUser_independentClaims",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "test_claimWithdraw_returnsClaimed",
     "inputs": [],
     "outputs": [],
@@ -545,6 +552,13 @@
   {
     "type": "function",
     "name": "test_claimWithdraw_reverts_whenNothingClaimable",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "test_claimWithdraw_skipsUnmaturedNFTs",
     "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"
@@ -565,14 +579,14 @@
   },
   {
     "type": "function",
-    "name": "test_compoundStakingRewards_reverts_whenBelowMinStakingAmount",
+    "name": "test_compound_returnsZero_whenBelowMinStakingAmount",
     "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"
   },
   {
     "type": "function",
-    "name": "test_compoundStakingRewards_reverts_whenZeroReward",
+    "name": "test_compound_returnsZero_whenZeroReward",
     "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"

@@ -315,8 +315,6 @@ contract gmMITO is
       emit RewardsCompounded(validator, compounded);
       totalCompounded += compounded;
     }
-
-    require(totalCompounded > 0, ZeroAmount());
   }
 
   /// @inheritdoc IgmMITO
@@ -351,7 +349,6 @@ contract gmMITO is
   ) external returns (uint256) {
     Storage storage $ = _getStorage();
 
-    // Determine claim limit
     uint256 tokenIdsLen = tokenIds.length;
     require(0 < tokenIdsLen && tokenIdsLen <= $.maxClaimsPerTx, ArrayOutOfBounds());
 
@@ -365,11 +362,10 @@ contract gmMITO is
       IWithdrawalNFT.WithdrawalResponse memory withdrawal =
         WITHDRAWAL_NFT.getWithdrawalRequest(tokenId);
 
-      if (withdrawal.timestamp <= maturity) {
-        totalClaimed += withdrawal.assets;
-        totalClaimedTokens++;
-      }
+      if (withdrawal.timestamp > maturity) continue;
 
+      totalClaimed += withdrawal.assets;
+      totalClaimedTokens++;
       WITHDRAWAL_NFT.burn(tokenId);
     }
 
@@ -377,11 +373,13 @@ contract gmMITO is
 
     $.totalPendingWithdrawal -= totalClaimed.toUint128();
 
-    uint256 mitoClaimed = GOV_MITO.claimWithdraw(address(this));
-    require(mitoClaimed == totalClaimed, AmountMismatch());
+    // Sweep any matured govMITO withdrawals into this contract's balance
+    uint256 claimable = GOV_MITO.previewClaimWithdraw(address(this));
+    if (claimable > 0) GOV_MITO.claimWithdraw(address(this));
 
-    // Transfer claimed govMITO to user
-    SafeTransferLib.safeTransfer(address(GOV_MITO), _msgSender(), mitoClaimed);
+    require(GOV_MITO.balanceOf(address(this)) >= totalClaimed, InsufficientGovMitoBalance());
+
+    SafeTransferLib.safeTransfer(address(GOV_MITO), _msgSender(), totalClaimed);
 
     emit WithdrawalClaimed(_msgSender(), totalClaimed, totalClaimedTokens, tokenIds);
 
