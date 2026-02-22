@@ -373,9 +373,7 @@ contract gmMITO is
 
     $.totalPendingWithdrawal -= totalClaimed.toUint128();
 
-    // Sweep matured govMITO→MITO conversions (returns native MITO to this contract)
-    uint256 claimable = GOV_MITO.previewClaimWithdraw(address(this));
-    if (claimable > 0) GOV_MITO.claimWithdraw(address(this));
+    _process();
 
     require(address(this).balance >= totalClaimed, InsufficientGovMitoBalance());
 
@@ -406,18 +404,23 @@ contract gmMITO is
                             INTERNAL FUNCTIONS
   //////////////////////////////////////////////////////////////*/
 
-  function _process() internal returns (uint256) {
-    // Claim matured unstake requests
+  function _process() internal returns (uint256 unstaked) {
+    // Step 1: Claim matured unstake requests → request govMITO→MITO conversion
     (, uint256 claimable) = VALIDATOR_STAKING.unstaking(address(this), uint48(block.timestamp));
-    if (claimable == 0) return 0;
+    if (claimable > 0) {
+      unstaked = VALIDATOR_STAKING.claimUnstake(address(this));
+      require(unstaked == claimable, AmountMismatch());
 
-    uint256 claimed = VALIDATOR_STAKING.claimUnstake(address(this));
-    require(claimed == claimable, AmountMismatch());
+      GOV_MITO.requestWithdraw(address(this), unstaked);
+      emit UnstakeProcessed(unstaked);
+    }
 
-    GOV_MITO.requestWithdraw(address(this), claimed);
-    emit UnstakeProcessed(claimed);
-
-    return claimed;
+    // Step 2: Sweep any matured govMITO→MITO conversions into native balance
+    uint256 mitoClaimable = GOV_MITO.previewClaimWithdraw(address(this));
+    if (mitoClaimable > 0) {
+      GOV_MITO.claimWithdraw(address(this));
+      emit GovMitoWithdrawalClaimed(mitoClaimable);
+    }
   }
 
   function _afterDeposit(
