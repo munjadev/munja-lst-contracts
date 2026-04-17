@@ -24,7 +24,7 @@ name = "mitosis"
 version = "1.1.1"
 url = "https://soldeer-revisions.s3.amazonaws.com/mitosis/1_1_1_28-11-2025_08:30:14_src.zip"
 checksum = "cbe137e0b1e0f3b4b34644a8141710c6bceb8bbdfc9eeb1a5d9dfa8392904197"
-integrity = "9e3bff0c20affa507a22cf6ffab0ad138fbb401ba807b4a709fcb16f172f43a7"
+integrity = "bfc26f4f7b5e55b76842fbd4f7e63df29cbb5a63787fce816e7a04d983fb4aeb"
 
 [[dependencies]]
 name = "solady"
@@ -38,10 +38,10 @@ name = "stub"
 version = "0.0.1"
 url = "https://soldeer-revisions.s3.amazonaws.com/stub/0_0_1_21-08-2025_12:01:43_src.zip"
 checksum = "8ba6c0c6421d0c9a6e06dfaa1aed738eb9cc4d898dcf54a87168658af9aad314"
-integrity = "245c10e48e5cc5114076fea7d6738f83a5219b0b6988038a33ed45c7fdaae815"
+integrity = "76663017026309f08443134f74506703fa6263405573da299351e0fb324f2e30"
 
 [[dependencies]]
 name = "succinctlabs-sp1-contracts"
-version = "5.0.0"
+version = "6.0.0"
 git = "https://github.com/succinctlabs/sp1-contracts.git"
-rev = "512b5e029abc27f6e46a3c7eba220dac83ecc306"
+tag = "v6.0.0"

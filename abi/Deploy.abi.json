@@ -144,6 +144,24 @@
   },
   {
     "type": "function",
+    "name": "addV6VerifiersToGateway",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "groth16",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "plonk",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "deploy",
     "inputs": [
       {

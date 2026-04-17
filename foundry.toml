@@ -17,7 +17,7 @@ remappings = [
   "@oz/=dependencies/@openzeppelin-contracts-5.2.0/",
   "@ozu/=dependencies/@openzeppelin-contracts-upgradeable-5.2.0/",
   "@solady/=dependencies/solady-0.1.21/src",
-  "@sp1/=dependencies/succinctlabs-sp1-contracts-5.0.0/contracts/src",
+  "@sp1/=dependencies/succinctlabs-sp1-contracts-6.0.0/contracts/src",
   "@std/=dependencies/forge-std-1.9.6/src",
   "@stub/=dependencies/stub-0.0.1/",
 
@@ -26,7 +26,7 @@ remappings = [
   "@openzeppelin/contracts/=dependencies/@openzeppelin-contracts-5.2.0/",
 
   # for sp1-contracts (git submodules not cloned by Soldeer)
-  "dependencies/succinctlabs-sp1-contracts-5.0.0/contracts/lib/openzeppelin-contracts/contracts/=dependencies/@openzeppelin-contracts-5.2.0/",
+  "dependencies/succinctlabs-sp1-contracts-6.0.0/contracts/lib/openzeppelin-contracts/contracts/=dependencies/@openzeppelin-contracts-5.2.0/",
 ]
 solc = "0.8.29"
 src = "src"
@@ -41,6 +41,7 @@ tab_width                    = 2
 
 [lint]
 exclude_lints = ["mixed-case-function", "mixed-case-variable"]
+ignore = ["dependencies/**"]
 
 [soldeer]
 remappings_generate   = false
@@ -54,6 +55,6 @@ forge-std                             = "1.9.6"
 mitosis                               = "1.1.1"
 solady                                = "0.1.21"
 stub                                  = "0.0.1"
-succinctlabs-sp1-contracts            = { version = "5.0.0", git = "https://github.com/succinctlabs/sp1-contracts.git", tag = "v5.0.0" }
+succinctlabs-sp1-contracts            = { version = "6.0.0", git = "https://github.com/succinctlabs/sp1-contracts.git", tag = "v6.0.0" }
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
