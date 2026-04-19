@@ -1,9 +1,9 @@
 # Bytecode Hashes for Contract Upgrade Verification
-# Generated at: 2026-04-19T03:14:22Z
+# Generated at: 2026-04-19T03:16:04Z
 # This file is auto-generated during release. DO NOT EDIT.
 
 [metadata]
-git_commit     = "488f317fe3a19a5215d2167253439543b6a566a8"
+git_commit     = "0290f023ba27020de944707459e473bfec092a9b"
 git_tag        = "oracle-v0.1.1-rc0"
 optimizer_runs = 9999
 solc_version   = "0.8.29+commit.ab55807c"
@@ -11,40 +11,40 @@ solc_version   = "0.8.29+commit.ab55807c"
 [contracts]
 
 [gmMITO]
-hash = "0x715ab1e765744aaf838b0e92b639a3d4292773e8c0c431960bf02abd0fab0497"
-impl = "0xE48B4a1E8972Dd42990Df8FaAB60d91a61463C4F"
+hash = "0x9a2f7d6509644e4591dc07fafbfdf39faace8a4fa374399720aa3990c919b374"
+impl = "0x1c9e35b7A7282C7A154C1A5A1371e12eE4b909FD"
 size = 21898 # bytes
 
 [mMITOc]
-hash = "0x44dce624a5e0333c03c474fcc40f003f13ca6c02a143ee242845206e43f7ec98"
-impl = "0x8A4A7c7bA1cc3DA40AbfbE0Ea3d10D740664266A"
+hash = "0xf09d4c5673c25a853051490bbbf0c98b47a8c84883aee59ad283ab240d9b89e3"
+impl = "0xF1DB50b64F6264bE2283e0775213a9A4Ca01E496"
 size = 23803 # bytes
 
 [mMITOs]
-hash = "0x221471f93e5c081edbb27f2870eff0f7532fe32b5c3a480914de35a21da9b715"
-impl = "0x0857df1F43f0A2b0521A29F4447c8FCe15ecDd64"
+hash = "0x978555f4acbfe598fae407348e58070050ee01c6edce92f1b63dcf0842827a18"
+impl = "0x9863D3FFB0D3B8b68FE571b916a8CA919374B7BC"
 size = 17337 # bytes
 
 [WithdrawalNFT]
-hash = "0xe0e533349d858eb3a3e07eb8c3192e954ff5543d2bdf891a1a41571331cdca0a"
-impl = "0xF34a37Ca2fbdccba2BC8ba06076769491b1928E0"
+hash = "0x0e3eb004dbaaed4c43ce85c16a9972189fd0ef93d957382e074e3c3644e8f6fd"
+impl = "0xCf22E1569D71ac026fEb8D82D8184Cc829Af97b2"
 size = 16879 # bytes
 
 [RewardRouter]
-hash = "0x7c54c8da955161a7758d4c2ad6ce37fde08d2bffcc0246bf31f546d720d1981a"
-impl = "0xE8f7ee04B7a6826Dafe1c45274f6F5D2F97B1253"
+hash = "0xff4d9045a9b215921fee05e01fb346557712c4482a46274b14bf7960c7ca5b10"
+impl = "0x4c1BA5880f1EbFdeeadDE5475D46C013D329C295"
 size = 20689 # bytes
 
 [ValidatorController]
-hash = "0x593e9d1603062500626a8dd0178e8af6311b319f65ede28b99ad7651f2026a2f"
-impl = "0x2863824E599cB9Ceaf6665306241a19652CAEee2"
+hash = "0xcbe99611673600cde6ade0729defe3e119ba95582ebde49c8102174394d9b2c0"
+impl = "0x260635Fe9efA5F623B68D8589A23059D3061f770"
 size = 8246 # bytes
 
 [ManagedOracleFeed]
-hash = "0xccb92311eed8dae1220d4565087fee02b7b3965588764618ff56ad451cee19fe"
+hash = "0x8bff700e090a529c80e355dfabe960e2bb140d687d1726c7d208fa08558ba76b"
 size = 15883 # bytes
 
 [ZkOracleFeed]
-hash = "0xe0454153c823f935fd15de8c8207d02aa27721af7d70d966806179431f0c0284"
-impl = "0x81CFADD9CCDAe2218ea33BB4b24B20fD5F59D85D"
+hash = "0xd6c09ebc2617469b5d0b47c48daf9a351d7f2a1700997afb8b4f5273d5a769ee"
+impl = "0x165f3B2a41e0062e6F2B987383c150aFB4264e13"
 size = 19307 # bytes
